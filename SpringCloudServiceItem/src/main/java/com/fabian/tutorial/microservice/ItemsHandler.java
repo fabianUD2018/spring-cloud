@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.fabian.tutorial.microservice.dtos.Item;
 import com.fabian.tutorial.microservice.dtos.Producto;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import reactor.core.publisher.Mono;
 
@@ -30,6 +31,7 @@ public class ItemsHandler {
 		});
 	}
 
+	@HystrixCommand(fallbackMethod = "some_method")
 	public Mono<ServerResponse> postProducto(ServerRequest r) {
 		Mono<Producto> producto = r.bodyToMono(Producto.class);
 		
