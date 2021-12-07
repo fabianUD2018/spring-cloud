@@ -17,6 +17,7 @@ public class ServicesRouterFunction {
 	@Bean
 	public RouterFunction<ServerResponse> routeRequest(ProductoService service){
 		return RouterFunctions.route(RequestPredicates.GET("api/productos"), service::getAllProducts)
-				.andRoute(RequestPredicates.POST("api/products"), service::insertOne);
+				.andRoute(RequestPredicates.POST("api/productos"), service::insertOne)
+				.andRoute(RequestPredicates.GET("api/productos/ver/{id}"), service::getProduct);
 	}
 }

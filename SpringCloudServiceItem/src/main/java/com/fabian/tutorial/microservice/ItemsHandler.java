@@ -36,7 +36,7 @@ public class ItemsHandler {
 		Mono<Producto> producto = r.bodyToMono(Producto.class);
 		
 		return producto.flatMap(p->service.saveProduct(p))
-				.flatMap(p -> ServerResponse.created(URI.create("api/products")).body(Mono.just(p), Producto.class))
+				.flatMap(p -> ServerResponse.created(URI.create("api/productos")).body(Mono.just(p), Producto.class))
 				.switchIfEmpty(ServerResponse.badRequest().build());
 	}
 }

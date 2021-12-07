@@ -30,7 +30,7 @@ public class WebClientService {
 		return client
 				.build()
 				.post()
-				.uri("http://productos-service/api/products")
+				.uri("http://productos-service/api/productos")
 				.bodyValue(p)
 				.retrieve()
 				.bodyToMono(Producto.class);

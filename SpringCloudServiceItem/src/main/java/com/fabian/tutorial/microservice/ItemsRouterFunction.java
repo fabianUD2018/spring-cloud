@@ -16,7 +16,7 @@ public class ItemsRouterFunction {
 	@Bean
 	public RouterFunction<ServerResponse> router (){
 		return RouterFunctions.route(RequestPredicates.GET("api/items"), handler::findAllProducts)
-				.andRoute(RequestPredicates.POST("api/item"), handler::postProducto);
+				.andRoute(RequestPredicates.POST("api/items"), handler::postProducto);
 				
 	}
 	

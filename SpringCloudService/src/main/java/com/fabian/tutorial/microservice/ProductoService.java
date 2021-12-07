@@ -31,7 +31,7 @@ public class ProductoService {
 				});*/
 		
 		return repository.findAll()
-				.doOnNext(p->System.out.println("encontre una instancia"))
+				//.doOnNext(p->System.out.println("encontre una instancia"))
 				.collectList()
 				.flatMap(lP->{
 					if (lP.isEmpty()) {
@@ -55,6 +55,19 @@ public class ProductoService {
 		Mono<Producto> producto = request.bodyToMono(Producto.class);
 		return producto.doOnNext(System.out::println).flatMap(p-> repository.save(p))
 				.flatMap(p->ServerResponse.created(URI.create("api/productos")).body(Mono.just(p), Producto.class));
+		
+	}
+	
+	public Mono<ServerResponse> getProduct(ServerRequest r){
+		
+		String id = r.pathVariable("id");
+		System.out.println("the id is "+  id);
+		return repository.findById(id)
+				.flatMap(result -> ServerResponse.ok().body(Mono.just(result), Producto.class))
+				.onErrorResume(error->{
+					return ServerResponse.badRequest().body(Mono.just(error.getMessage()), String.class);
+				});
+		
 		
 	}
 }
