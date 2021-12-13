@@ -1,0 +1,19 @@
+server:  port: 8090eureka:  client:    service-url:      defaultZone: http://localhost:8761/eureka
+spring:
+  application: 
+    name: servicio-gateway-server
+  cloud: 
+    gateway: 
+      routes: 
+      - id: productos-service
+        uri: lb://productos-service
+        predicates: 
+          - Path= /productos/**
+        filters: 
+          - StripPrefix=1          - Ejemplo=mensaje_filtro, nombre_usuario
+      - id: productos-client
+        uri: lb://productos-client
+        predicates: 
+          - Path= /items/**
+        filters: 
+          - StripPrefix=1          - name: Ejemplo            args:              mensaje: mensaje_xd              usuario: un_user_xs
