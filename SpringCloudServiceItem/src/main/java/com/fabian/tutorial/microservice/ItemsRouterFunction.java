@@ -1,6 +1,7 @@
 package com.fabian.tutorial.microservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RequestPredicates;
@@ -11,6 +12,8 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class ItemsRouterFunction {
 
+
+	
 	@Autowired
 	private ItemsHandler handler;
 	@Bean
