@@ -17,28 +17,19 @@ public class EjemploGatewayFilterFactory extends AbstractGatewayFilterFactory<Ej
 	Logger logger = LoggerFactory.getLogger(EjemploGatewayFilterFactory.class);
 
 	public static class Configuracion {
-
+		private String mensaje;
+		private String usuario;
 	}
 	
-	private String mensaje;
-	private String usuario;
+
 	
 	
 
-	public String getMensaje() {
-		return mensaje;
-	}
+	
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public EjemploGatewayFilterFactory() {
+		super(Configuracion.class);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

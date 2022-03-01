@@ -5,26 +5,22 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.fabian.tutorial.cloudgateway</groupId>
-	<artifactId>SpringCloudGateway</artifactId>
+	<groupId>com.fabian.tutorial.config.server</groupId>
+	<artifactId>SpringCloudConfigServer</artifactId>
 	<version>1</version>
-	<name>SpringCloudGateway</name>
-	<description>zuul project </description>
+	<name>SpringCloudConfigServer</name>
+	<description>aop project </description>
 	<properties>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>2021.0.0</spring-cloud.version>
+		<spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 
 		<dependency>
@@ -38,10 +34,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-				<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
-		</dependency> 
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

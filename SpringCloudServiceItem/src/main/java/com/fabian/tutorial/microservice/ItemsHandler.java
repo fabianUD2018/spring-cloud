@@ -1,11 +1,15 @@
 package com.fabian.tutorial.microservice;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -17,6 +21,7 @@ import com.fabian.tutorial.microservice.dtos.Producto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import reactor.core.publisher.Mono;
 
+@RefreshScope
 @Component
 public class ItemsHandler {
 
@@ -25,6 +30,9 @@ public class ItemsHandler {
 	
 	@Autowired
 	private WebClientService service;
+	
+	@Value("${custom.message}")
+	private String messageConfiguration;
 
 	public Mono<ServerResponse> findAllProducts(ServerRequest r){
 		return service.findAllProducts()
@@ -52,5 +60,14 @@ public class ItemsHandler {
 				.flatMap(p -> ServerResponse.created(URI.create("api/productos")).body(Mono.just(p), Producto.class))
 				.switchIfEmpty(ServerResponse.badRequest().build());
 		
+	}
+	
+	
+	public Mono<ServerResponse> obtainConfiguration(ServerRequest request){
+		
+		Map<String, String > response = new HashMap<>();
+		response.put("config-information", messageConfiguration);
+		
+		return ServerResponse.ok().body(Mono.just(response), HashMap.class);
 	}
 }
